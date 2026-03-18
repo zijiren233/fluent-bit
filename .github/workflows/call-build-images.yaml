@@ -132,6 +132,7 @@ jobs:
             FLB_NIGHTLY_BUILD=${{ inputs.unstable }}
             RELEASE_VERSION=${{ inputs.version }}
             WAMR_BUILD_TARGET=${{ (contains(matrix.platform, 'arm/v7') && 'ARMV7') || '' }}
+            FLB_JEMALLOC_OPTIONS=${{ (matrix.platform == 'arm64' && '--with-lg-page=16 --with-lg-quantum=3') || '' }}
 
       - name: Export ${{ matrix.target }} digest
         run: |
